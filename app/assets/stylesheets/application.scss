@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+.container {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+}
+
+.navbar-nav {
+  display: flex;
+}
