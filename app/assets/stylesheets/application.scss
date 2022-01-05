@@ -15,14 +15,5 @@
  */
 @import "bootstrap";
 
-.container {
-  display: flex;
-}
-
-.menu {
-  display: flex;
-}
-
-.navbar-nav {
-  display: flex;
-}
+@import 'font-awesome-sprockets';
+@import 'font-awesome';

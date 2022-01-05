@@ -4,45 +4,66 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/910ae00410.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <div class="container">
-        <a class="navbar-brand" href="/">Bookers</a>
-        <div class="menu">
-          <ul class="navbar-nav ml-auto">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/home/about">About</a>
-            </li>
-            <li>
-              <a href="/users/sign_up">Sign up</a>
-            </li>
-            <li>
-              <a href="/">Log in</a>
-            </li>
-          </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>Bookers</span></a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <a class="fas fa-home nav-link text-light" href="/">Home</a>
+              </li>
+              <li>
+                <a class="fas fa-link nav-link text-light" href="/homes/about">About</a>
+              </li>
+              <li>
+                <a class="fas fa-user-plus nav-link text-light" href="/users/sign_up">Sign up</a>
+              </li>
+              <li>
+                <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in">Log in</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+      <div class="row">
+        <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+          <h1>welcome to <i class="fas fa-book"></i><strong>Bookers</strong>!!</h1>
+          <p>In <i class="fas fa-book"></i><strong>Bookers,</strong></p>
+          <p>you can share and exchange your opinions,inpressions,and emotions</p>
+          <p>about various books!</p>
+        
+        <div class="btn-wrapper col-10 mx-auto">
+    
+          <% if user_signed_in? %>
+            <div class="row">
+                <%= link_to "ログアウト", destroy_user_session_path,class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" ,method: :delete %>
+            </div>
+          <% else %>
+            <div class="row">
+                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" %>
+            </div>
+            <div class="row">
+                <%= link_to "Log in", new_user_session_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up text-light" %>
+            </div>
+          <% end %>
+        </div>
+        <%= yield %>
         </div>
       </div>
-    </header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-    <%= yield %>
+    </main>
+    
+    <footer>
+      <p>Copy Right Infratop.inc</p>
+    </footer>
   </body>
 </html>
