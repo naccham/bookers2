@@ -11,59 +11,69 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/"><span>Bookers</span></a>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-              <li>
-                <a class="fas fa-home nav-link text-light" href="/">Home</a>
-              </li>
-              <li>
-                <a class="fas fa-link nav-link text-light" href="/homes/about">About</a>
-              </li>
-              <li>
-                <a class="fas fa-user-plus nav-link text-light" href="/users/sign_up">Sign up</a>
-              </li>
-              <li>
-                <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in">Log in</a>
-              </li>
-            </ul>
+      <% if user_signed_in? %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="/"><span>Bookers</span></a>
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                <li>
+                  <a class="fas fa-home nav-link text-light" href="/users/id">Home</a>
+                </li>
+                <li>
+                  <%= link_to 'Users', user_path(current_user.id), class: 'fas fa-users nav-link text-light' %>
+                  <!--<a class="fas fa-users nav-link text-light" href="/users">Users</a>-->
+                </li>
+                <li>
+                  <a class="fas fa-book-open nav-link text-light" href="/books">Books</a>
+                </li>
+                <li>
+                  <%= link_to "Log out", destroy_user_session_path, class: "fas fa-sign-out-alt nav-link text-light", method: :delete %>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      <% else %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="/"><span>Bookers</span></a>
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                <li>
+                  <a class="fas fa-home nav-link text-light" href="/">Home</a>
+                </li>
+                <li>
+                  <a class="fas fa-link nav-link text-light" href="/homes/about">About</a>
+                </li>
+                <li>
+                  <a class="fas fa-user-plus nav-link text-light" href="/users/sign_up">Sign up</a>
+                </li>
+                <li>
+                  <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in">Log in</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      <% end %>
     </header>
-    
+
     <main>
-      <div class="row">
-        <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
-          <h1>welcome to <i class="fas fa-book"></i><strong>Bookers</strong>!!</h1>
-          <p>In <i class="fas fa-book"></i><strong>Bookers,</strong></p>
-          <p>you can share and exchange your opinions,inpressions,and emotions</p>
-          <p>about various books!</p>
+      
+
+
         
-        <div class="btn-wrapper col-10 mx-auto">
-    
-          <% if user_signed_in? %>
-            <div class="row">
-                <%= link_to "ログアウト", destroy_user_session_path,class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" ,method: :delete %>
-            </div>
-          <% else %>
-            <div class="row">
-                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" %>
-            </div>
-            <div class="row">
-                <%= link_to "Log in", new_user_session_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up text-light" %>
-            </div>
-          <% end %>
-        </div>
-        <%= yield %>
+      <%= yield %>
+    </main>
+
+
+    <footer>
+      <div class="row">
+        <div class="mx-auto">
+          <p>Copy Right Infratop.inc</p>
         </div>
       </div>
-    </main>
-    
-    <footer>
-      <p>Copy Right Infratop.inc</p>
     </footer>
   </body>
 </html>
