@@ -9,10 +9,10 @@
                 <% if user_signed_in? %>
                 <% else %>
                     <div class="row">
-                        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" %>
+                        <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in text-light" %>
                     </div>
                     <div class="row">
-                        <%= link_to "Log in", new_user_session_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up text-light" %>
+                        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up text-light" %>
                     </div>
                 <% end %>
             </div>
