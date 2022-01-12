@@ -1,12 +1,11 @@
-<div class="container px-5 px-sm-0">
-  <!--バリデーションエラー表示-->
+<!--バリデーションエラー表示-->
   <%= render 'books/error' %>
-
+<div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <!--User info-->
-      <%= render 'books/info',user: @user %>
-
+      <!--左側の-->
+      <%= render 'books/info',user: @user  %>
+      
       <!--New book-->
       <h2 class="mt-3">New book</h2>
       <%= form_with model: @book, local:true do |f| %>
@@ -22,7 +21,8 @@
           <%= f.submit 'Create Book', class: "btn btn-success sign_up text-light" %>
         </div>
       <% end %>
-    </div>
+    </div>  
+    
     <!--右側の-->
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -51,8 +51,8 @@
               <td><%= book.body %></td>
             </tr>
           <% end %>
+          <%= paginate @books %>
         </tbody>
-
       </table>
     </div>
   </div>
